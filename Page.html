@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+  <title>To My Bebu 💌</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #fdf6f0, #ffe9e9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .envelope {
+      width: 80vw;
+      max-width: 320px;
+      height: 53vw;
+      max-height: 210px;
+      background: #ffe3e6;
+      border: 2px solid #e3a5a7;
+      border-radius: 8px;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      perspective: 800px;
+    }
+
+    .flap {
+      width: 100%;
+      height: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: top;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      z-index: 2;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .flap-front, .flap-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px 8px 0 0;
+    }
+
+    .flap-front {
+      background: #fbbfc2;
+      border-bottom: 1px solid #e3a5a7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .flap-back {
+      background: linear-gradient(to bottom, #fbbfc2, #ffe3e6);
+      transform: rotateX(180deg);
+      box-shadow: inset 0 -8px 10px rgba(0,0,0,0.03);
+    }
+
+    .heart {
+      font-size: 1.8rem;
+      color: #e25555;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .content {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #fffaf8, #ffeef0);
+      overflow-y: scroll;
+      z-index: 10;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .illustration {
+      background: url('GiftIllustration.jpg') center/contain no-repeat;
+      height: 60vh;
+      opacity: 0;
+      transition: opacity 1s ease;
+      pointer-events: none;
+    }
+
+    .illustration.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .message {
+      font-family: 'Robot Slab', cursive;
+      padding: 20px 15px;
+      font-size: 1rem;
+      line-height: 1.5;
+      background: linear-gradient(to bottom, #ffaba0, #fffcf0);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      text-align: center;
+      max-width: 90vw;
+      margin: 20px auto 60px auto;
+    }
+
+    @media (max-width: 480px) {
+      .message {
+        font-size: 0.9rem;
+        padding: 15px 10px;
+      }
+    }
+  </style>
+</head>
+<body onload="checkPassword()">
+  <div class="envelope" onclick="openEnvelope()">
+    <div class="flap">
+      <div class="flap-front">
+        <div class="heart">❤️</div>
+      </div>
+      <div class="flap-back"></div>
+    </div>
+  </div>
+
+  <div class="content" id="content">
+    <div class="illustration"></div>
+    <div class="message">
+      <p><b>Oyi Bebu ❤️</b></p>
+      <p>Hi!! Lol, what am i doing, i never did this for anyone and idk how i even think of all this for u <b>BUT</b>.</p>
+      <p>Uk i was just randomly playing skribble one day and i met a stranger online, <b>I met you</b>.</p>
+      <p>Never knew our vibes would match this much and we'd have so much things in common,</p>
+      <p>never thought we would get along and that this person would become such a big part of my life.</p><br>
+      <p>A year ago this day we first started talking,</p>
+      <p>and with time we started to get closer, and tbh u made my heart excited everyday,</p>
+      <p>everyday it gave me feeling that im getting to know about someone</p>
+      <p>who is so far from me, but in hearts we were getting closer.</p>
+      <p>This day is mark of our one year together, I pray we spend more time together with each other for always.</p><br>
+      <p>I tried to make an image describing our meeting story. Hope u like it.</p>
+      <p>This is just a little piece of my heart for you.</p>
+      <p><b>Happy Anniversary, My Marsian Dino, My Bebu❤️</b></p>
+      <br><br>
+      <p><b>Your Billu🐱</b></p>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.querySelector('.envelope');
+    const flap = document.querySelector('.flap');
+    const content = document.getElementById('content');
+    const illustration = document.querySelector('.illustration');
+
+    function checkPassword() {
+        const password = prompt("Enter the secret password:");
+        const correctPassword = "bebuonly";
+        if (password !== correctPassword) {
+            document.body.innerHTML = "<h2 style='text-align:center; margin-top: 50vh; font-family: sans-serif;'>Access Denied 💔</h2>";
+        }
+    }
+
+
+    function openEnvelope() {
+      envelope.classList.add('open');
+      setTimeout(() => {
+        content.style.display = 'block';
+        document.body.style.overflow = 'auto';
+        envelope.style.display = 'none';
+
+        setTimeout(() => {
+          illustration.classList.add('show');
+        }, 100);
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
